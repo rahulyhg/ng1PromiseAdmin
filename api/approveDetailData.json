@@ -1,0 +1,119 @@
+{
+  "data": {
+    "status": "COMPLETED",
+    "attendanceType": 2,
+    "currentMonthCount": 1,
+    "titleEn": "",
+    "createTime": 1497512243000,
+    "formData": {
+      "pmc_business_id": {
+        "value": "201706151537000221003",
+        "extendValue": ""
+      },
+      "请假事由": {
+        "value": "请假",
+        "extendValue": ""
+      },
+      "processCode": {
+        "value": "PROC-3772D816-BD6F-434A-A5C2-FEEEA3FDF668",
+        "extendValue": ""
+      },
+      "procInstTitle": {
+        "value": "MR王海光的请假",
+        "extendValue": ""
+      },
+      "originatorDeptName": {
+        "value": "办公室",
+        "extendValue": ""
+      },
+      "originatorDeptId": {
+        "value": "40305601",
+        "extendValue": ""
+      },
+      "DDHolidayField-J2BWEN12": {
+        "value": "[\"2017-06-15 下午\",\"2017-06-23 下午\",6.5,\"halfDay\",\"年假\",\"请假类型\"]",
+        "extendValue": ""
+      },
+      "approval": {
+        "value": "[\"0858175607767036\",\"0119480724102868920\"]",
+        "extendValue": "[{\"viewName\":\"普通员工\",\"staffId\":\"0858175607767036\",\"approval_type\":\"target_label\",\"labelName\":\"普通员工\",\"labelId\":199556733,\"memberCount\":1},{\"viewName\":\"管理层\",\"staffId\":\"0119480724102868920\",\"approval_type\":\"target_label\",\"labelName\":\"管理层\",\"labelId\":199556734,\"memberCount\":1}]"
+      },
+      "procInstTitleEn": {
+        "value": "",
+        "extendValue": ""
+      }
+    },
+    "approveInfo": [
+      {
+        "extension": null,
+        "operatorType": "",
+        "outer": false,
+        "personalPhoto": "",
+        "operatorName": "MR王海光",
+        "remark": "",
+        "email": "",
+        "action": "submit",
+        "operator": "0119480724102868920",
+        "operateTime": 1497512243000,
+        "taskId": "",
+        "files": ""
+      },
+      {
+        "extension": {
+          "staffId": "0858175607767036",
+          "viewName": "普通员工",
+          "approval_type": "target_label",
+          "labelName": "普通员工",
+          "memberCount": 1,
+          "labelId": 199556733
+        },
+        "operatorType": "",
+        "outer": false,
+        "personalPhoto": "",
+        "operatorName": "师兄",
+        "remark": "我们都在上班，作为老板的你怎么能出去浪？",
+        "email": "",
+        "action": "refuse",
+        "operator": "0858175607767036",
+        "operateTime": 1497512328000,
+        "taskId": "17931791550",
+        "files": "{\"photos\":[\"https:\/\/static.dingtalk.com\/media\/lADPACOG80qnauDNBQDNAtA_720_1280.jpg\"],\"attachments\":[]}"
+      }
+    ],
+    "originatorInfo": {
+      "name": "MR王海光",
+      "personalPhoto": "",
+      "isSysAdmin": true,
+      "uid": "",
+      "email": "",
+      "indirectPhone": "",
+      "labels": [],
+      "corpName": "元宝集团",
+      "workNo": "0119480724102868920"
+    },
+    "noticeInfo": [],
+    "noticeTitle": "审批通过后，通知抄送人",
+    "procView": "inner",
+    "masterDataUserVo": null,
+    "processInstanceId": "fce66dbf-1335-45fa-bb6f-3cfff390bc3f",
+    "procType": "inner",
+    "user": {
+      "name": "MR王海光",
+      "personalPhoto": "",
+      "isSysAdmin": null,
+      "orgId": "dingb3e7ec6f033f799f35c2f4657eb6378f",
+      "email": "",
+      "outGroupId": "",
+      "workNo": "0119480724102868920"
+    },
+    "finishTime": 1497512328000,
+    "customData": "{\"requestId\":[\"dingb3e7ec6f033f799f35c2f4657eb6378f_0119480724102868920_1497512210565\"]}",
+    "formSchema": "{\"title\":\"请假\",\"icon\":\"leave\",\"description\":\"适用于请假申请，精确扣减出勤时间，并同步考勤报表\",\"dirId\":\"15c7737f334593c1cc0dd6f447bac7d2\",\"items\":[{\"componentName\":\"DDHolidayField\",\"props\":{\"placeholder\":\"请选择\",\"required\":true,\"format\":\"yyyy-MM-dd\",\"unit\":\"\",\"push\":{\"attendanceRule\":\"1\",\"pushSwitch\":\"1\",\"pushTag\":\"请假\"},\"pushToCalendar\":\"1\",\"duration\":true,\"durationLabel\":\"时长\",\"attendTypeLabel\":\"请假类型\",\"label\":[\"开始时间\",\"结束时间\"],\"options\":[{\"name\":\"年假\",\"unit\":\"halfDay\",\"leaveCode\":\"c776aeee-66f8-47ad-9598-ec611b967834\",\"displayUnit\":\"按半天请\"},{\"name\":\"事假\",\"unit\":\"hour\",\"leaveCode\":\"f2e0fd6a-017e-468b-9e51-be3bcbaa8d9b\",\"displayUnit\":\"按小时请\"},{\"name\":\"病假\",\"unit\":\"hour\",\"leaveCode\":\"d5555643-f9ee-4946-8a9e-3bd53cafc8b7\",\"displayUnit\":\"按小时请\"},{\"name\":\"调休\",\"unit\":\"day\",\"leaveCode\":\"4981298c-0d26-4bca-9bfc-7f690b37b6cf\",\"displayUnit\":\"按天请\"},{\"name\":\"产假\",\"unit\":\"day\",\"leaveCode\":\"7c008037-78a2-4e9c-a985-d565f1547d48\",\"displayUnit\":\"按天请\"},{\"name\":\"婚假\",\"unit\":\"day\",\"leaveCode\":\"233d04a4-efb0-448f-8b2c-d207992af7d5\",\"displayUnit\":\"按天请\"},{\"name\":\"例假\",\"unit\":\"halfDay\",\"leaveCode\":\"d1657cd4-7e10-4186-92d6-db60b73dc377\",\"displayUnit\":\"按半天请\"},{\"name\":\"丧假\",\"unit\":\"day\",\"leaveCode\":\"b5c3bfd9-d6e3-4a79-b2a1-b9d0b96c7dba\",\"displayUnit\":\"按天请\"}],\"id\":\"DDHolidayField-J2BWEN12\"}},{\"componentName\":\"TextareaField\",\"props\":{\"label\":\"请假事由\",\"placeholder\":\"请输入请假事由\",\"required\":true,\"id\":\"请假事由\"}},{\"componentName\":\"DDPhotoField\",\"props\":{\"label\":\"图片\",\"id\":\"图片\"}}]}"
+  },
+  "errorCode": "",
+  "throwable": "",
+  "success": true,
+  "errorMessage": "",
+  "metadata": {},
+  "httpStatus": "200"
+}

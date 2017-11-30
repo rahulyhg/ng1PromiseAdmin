@@ -1,0 +1,128 @@
+<div ng-controller="newModelCtrl">
+    <h2>{{newModelTitle}}</h2>
+    <hr/>
+    <button ng-click="getApplyDetail()">获取所有的申请信息</button>
+    <hr/>
+    <button ng-click="setUser($event,'小黄')">登录：小黄</button>
+    <button ng-click="setUser($event,'小蓝')">登录：小蓝</button>
+    <button ng-click="setUser($event,'摩拜')">登录：摩拜</button>
+    <button ng-click="setUser($event,'永安行')">登录：永安行</button>
+    <button ng-click="deleteUser($event)">注销登录</button>
+    当前：<span ng-bind="userInfo.name"></span>
+    <hr/>
+    <h4>设置审批顺序流程：</h4>
+    <button ng-click="toggleApprovalProcessType($event,'custom')">自定义审批流程</button>
+    <button ng-click="toggleApprovalProcessType($event,'free')">自由审批流程</button>
+    <div ng-if="approvalProcessType==='custom'">
+        <br/>
+        当前：：自定义审批流程
+        <br/>
+
+        <div class="container">
+            候选人：
+            <ul style="list-style: none;">
+                <li ng-click="setApproval($event)"
+                    style="border:1px solid #66c;margin-right:20px;display: inline-block;" ng-repeat="user in users"
+                    ng-bind="user.name"></li>
+            </ul>
+            当前流程(点击则删除)：
+            <ul style="list-style: none;border:1px solid #ddd;">
+                <li ng-click="deleteApproval($event)"
+                    style="display: inline-block;"
+                    ng-repeat="approvalName in approvalNameArr" >
+                    --><span ng-bind="approvalName"></span>
+                </li>
+            </ul>
+            <br/>
+            <button ng-if="approvalNameArr.length>0" ng-click="setApprovalProcess($event)">提交审批顺序</button>
+        </div>
+    </div>
+    <div ng-if="approvalProcessType==='free'">
+        <br/>
+        当前：：自由审批流程
+        <br/>
+        <!--选择审批人：-->
+        <!--<select ng-model="approval" ng-options="user as user.name for user in users">-->
+            <!--<option value="" disabled>选择审批人</option>-->
+        <!--</select>-->
+    </div>
+    <hr/>
+    <h4>开始</h4>
+    <button ng-click="showMyApply()">我要填写申请表</button>
+    <div ng-if="showMyApplyTable" class="container" style="border:1px solid #ccc;">
+        <select name="" id="" ng-model='classify'>
+            <option value="">--选择申请流程--</option>
+            <option value="1">请假申请</option>
+            <option value="2">外出申请</option>
+            <option value="3">出差申请</option>
+            <option value="4">加班申请</option>
+            <option value="5">报销申请</option>
+            <option value="6">物品领用申请</option>
+            <option value="7">转正申请</option>
+            <option value="8">离职申请</option>
+        </select> <br/>
+        <label for="">
+            请假天数：<input ng-model='holidayField' type="text"/>
+        </label><br/>
+        <label for="">
+            请假事由：<textarea name="" ng-model='reason' cols="30" rows="10"></textarea>
+        </label><br/>
+
+        审批人：
+        <div ng-if="applyApprovalProgress==='custom'">
+            <div ng-repeat="applyApproval in applyApprovalProgressContent" style="display: inline-block;">-->
+                <div ng-repeat="user in users" style="display: inline-block;">
+                    <span ng-if="user.workNo==applyApproval" ng-bind="user.name"></span>
+                </div>
+            </div>
+        </div>
+        <div ng-if="applyApprovalProgress==='free'">
+            <!--<select ng-model="department" ng-change="subPosition()"-->
+                    <!--ng-options="department as department.name for department in departments">-->
+                <!--<option value="" disabled>选择部门</option>-->
+            <!--</select>-->
+            <!--<select ng-model="position" ng-change="subApprover()"-->
+                    <!--ng-options="position as position.name for position in subPositions">-->
+                <!--<option value="" disabled>选择职务</option>-->
+            <!--</select>-->
+            <select ng-model="applyApproval" ng-options="user as user.name for user in users">
+                <option value="" disabled>选择审批人</option>
+            </select>
+        </div>
+        <br/>
+        <button ng-click="apply()">提交</button>
+    </div>
+    <div class="container">
+        <div ng-repeat="applyItem in applyDetail">
+            <h4 ng-bind="applyItem.formData.instTitle"></h4>
+
+            <p>编号：<span ng-bind="applyItem.business_id"></span></p>
+
+            <p>创建时间：<span ng-bind="applyItem.createTime | date:'yyyy-MM-dd'"></span></p>
+
+            <p>完成时间：<span ng-bind="applyItem.finishTime | date:'yyyy-MM-dd'"></span></p>
+
+            <p>申请类型：<span ng-bind="applyItem.formData.classify.value"></span>----<span
+                    ng-bind="applyItem.formData.classify.extendValue"></span></p>
+
+            <p>申请原因：<span ng-bind="applyItem.formData.reason"></span></p>
+
+            <div>
+                审批人：
+                <div style="color:#f60;" ng-if="applyItem.approval" ng-repeat="approvalItem in applyItem.approval">
+                    <div ng-if="user.workNo==approvalItem" ng-repeat="user in users">
+                        <span ng-bind="user.name"></span>
+                    </div>
+                </div>
+            </div>
+            <div>
+                抄送人：
+                <div style="color:#f60;" ng-if="applyItem.copyTo" ng-repeat="approvalItem in applyItem.copyTo">
+                    <div ng-if="user.workNo==approvalItem" ng-repeat="user in users">
+                        <span ng-bind="user.name"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

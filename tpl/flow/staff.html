@@ -1,0 +1,26 @@
+<div ng-controller="flowCtrl">
+
+    <hr/>
+
+    <h4>员工管理页面</h4>
+<p>员工信息展示  页面</p>
+    <hr/>
+    <ul>
+        <li ng-repeat="user in users">
+            <p ng-bind="user.userName"></p>
+            <p ng-bind="user.tel"></p>
+            <p ng-bind="user.email"></p>
+            部门-职位：
+            <ul style="color:#f60;">
+                <li ng-repeat="userJob in user.job">
+                    <div ng-if="userJob.department==department.did"  ng-repeat="department in departments">
+                        <div ng-if="userJob.position==position.pid" ng-repeat="position in positions">
+                            <span ng-bind="department.name"></span>---------
+                            <span ng-bind="position.name"></span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,24 @@
+<div ng-controller="eleCtrl">
+
+    <form>
+        <div ng-repeat="input in inputsText">
+            <div ng-include="'./tpl/ele/e/input_text.html'"></div>
+        </div>
+        <div ng-repeat="input in inputsRadio">
+            <div ng-include="'./tpl/ele/e/input_text.html'"></div>
+        </div>
+        <!--<div ng-include="'./tpl/ele/e/select.html'"></div>-->
+        <!--<div ng-include="'./tpl/ele/e/textarea.html'"></div>-->
+        <button type="submit" ng-click="console()">提交</button>
+        <button></button>
+    </form>
+    <p>来加入派一</p>
+    <style>
+        p{
+            font-family: "微软雅黑";
+            font-size:16px;
+            font-weight:bold;
+            line-height: 31px;
+        }
+    </style>
+</div>

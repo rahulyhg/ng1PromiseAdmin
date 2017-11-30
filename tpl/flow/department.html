@@ -1,0 +1,15 @@
+<div ng-controller="flowCtrl">
+    <h4>组织结构一览</h4>
+    <p>暂不可更改该。</p>
+    <hr/>
+    <ul>
+        <li ng-if="departments" ng-repeat="department in departments">
+            <span ng-bind="department.did"></span>-------------------<span ng-bind="department.name"></span>
+            <div ng-repeat="dPosition in department.position">
+                <div ng-if="dPosition==position.pid" ng-repeat="position in positions">
+                    -------------<span ng-bind="position.pid"></span>-------------------<span ng-bind="position.name"></span>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

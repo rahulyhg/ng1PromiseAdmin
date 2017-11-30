@@ -1,0 +1,31 @@
+<div ng-if="input.type=='text'">
+    <input ng-if="input.required" type="text" ng-disabled="'{{input.disabled}}'" maxlength="{{input.maxLength}}"
+           placeholder="{{input.placeholder}}" value="{{input.value}}" ng-model="input.ngModel" required/>
+
+    <input ng-if="!input.required" type="text" ng-disabled="'{{input.disabled}}'" maxlength="{{input.maxLength}}"
+           placeholder="{{input.placeholder}}" value="{{input.value}}" ng-model="input.ngModel"/>
+</div>
+
+
+<div ng-if="input.type=='radio'">
+    <input ng-if="input.required" type="radio" ng-checked="'{{input.checked}}'" ng-disabled="'{{input.disabled}}'" name="{{input.name}}" value="{{input.value}}" required/><span ng-if="input.required" ng-bind="input.tipValue"></span>
+
+    <input ng-if="!input.required" type="radio" ng-checked="'{{input.checked}}'" ng-disabled="'{{input.disabled}}'" name="{{input.name}}" value="{{input.value}}"/><span ng-if="!input.required" ng-bind="input.tipValue"></span>
+</div>
+
+
+
+<!--<input type="{{input.type}}" ng-checked="'{{input.checked}}'" ng-disabled="'{{input.disabled}}'" maxlength="{{input.maxLength}}" placeholder="{{input.placeholder}}" value="{{input.value}}"/>-->
+
+
+<style>
+    input {
+        width: 300px;
+    }
+</style>
+
+
+<!--<input type="{{input.type}}" ng-checked="'{{input.checked}}'" ng-disabled="'{{input.disabled}}'" maxlength="{{input.maxLength}}" placeholder="{{input.placeholder}}" value="{{input.value}}"/>-->
+
+
+

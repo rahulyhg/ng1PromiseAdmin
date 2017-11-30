@@ -1,0 +1,199 @@
+<h1>这个是流程控制 模型 首页</h1>
+<div ng-controller="flowCtrl">
+
+    <hr/>
+
+    <h4>用户设定</h4>
+
+<button ng-click="tttr()">ttttr</button>
+    <hr/>
+
+    <div ng-if="!userLogined">
+        <button class="btn m-b-xs btn-sm btn-info btn-addon" ng-click="setUser('Tom')">
+            <i class="fa fa-minus pull-right"></i>登录为:开发人员
+        </button>
+
+        <button class="btn m-b-xs btn-sm btn-success btn-addon" ng-click="setUser('Alice')">
+            <i class="fa fa-minus pull-right"></i>登录为:开发组长
+        </button>
+
+        <button class="btn m-b-xs btn-sm btn-danger btn-addon" ng-click="setUser('Amy')">
+            <i class="fa fa-minus pull-right"></i>登录为:产品经理
+        </button>
+    </div>
+    <div ng-if="userLogined">
+        <p>用户已登录。</p>
+        <button class="btn m-b-xs btn-sm btn-danger btn-addon" ng-click="deleteUser('Amy')">
+            <i class="fa fa-minus pull-right"></i>注销登录
+        </button>
+    </div>
+    <hr/>
+    <div ng-show="userInfo">
+        当前用户信息： <br/>
+
+        <p>用户名：<span ng-bind="userInfo.userName"></span></p>
+
+        <p>电话号码：<span ng-bind="userInfo.tel"></span></p>
+
+        <p>邮箱：<span ng-bind="userInfo.email"></span></p>
+
+        <p>工号：<span ng-bind="userInfo.id"></span></p>
+
+        <div>部门-职位：
+            <ul style="color:#f60;">
+                <li ng-repeat="userJob in userInfo.job">
+                    <div ng-if="userJob.department==department.did" ng-repeat="department in departments">
+                        <div ng-if="userJob.position==position.pid" ng-repeat="position in positions">
+                            <span ng-bind="department.name"></span>---------
+                            <span ng-bind="position.name"></span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <p ng-show="userInfo.otherInfo.intro">个人介绍：<span ng-bind="userInfo.otherInfo.intro"></span></p>
+    </div>
+
+    <p>二级联动</p>
+    <select name="position" ng-model="department" ng-change="subSelect()"
+            ng-options="department as department.name for department in departments">
+        <option value="" disabled>选择部门</option>
+    </select>
+    <select name="position" ng-model="position" ng-options="position as position.name for position in subPositions">
+        <option value="" disabled>选择职务</option>
+    </select>
+
+    <hr/>
+    <hr/>
+
+    <p>------------------------------------申请demo-------------------------------------</p>
+
+    <div style="padding:20px;width:80%;margin:0 auto;">
+        <select name="" id="" ng-model='applyType'>
+            <option value="">--选择申请流程--</option>
+            <option value="1">请假申请</option>
+            <option value="2">外出申请</option>
+            <option value="3">出差申请</option>
+            <option value="4">加班申请</option>
+            <option value="5">报销申请</option>
+            <option value="6">物品领用申请</option>
+            <option value="7">转正申请</option>
+            <option value="8">离职申请</option>
+        </select> <br/>
+        <label for="">
+            请假天数：<input ng-model='applyDays' type="text"/>
+        </label><br/>
+        <label for="">
+            请假事由：<textarea name="" ng-model='applyReason' cols="30" rows="10"></textarea>
+        </label><br/>
+
+        审批人：
+        <select ng-model="department" ng-change="subPosition()"
+                ng-options="department as department.name for department in departments">
+            <option value="" disabled>选择部门</option>
+        </select>
+        <select ng-model="position" ng-change="subApprover()"
+                ng-options="position as position.name for position in subPositions">
+            <option value="" disabled>选择职务</option>
+        </select>
+        <select ng-model="subUser" ng-options="user as user.userName for user in subUsers">
+            <option value="" disabled>选择审批人</option>
+        </select>
+        <br/>
+        <button ng-click="apply()">提交</button>
+    </div>
+    <hr/>
+    <hr/>
+    <p>------------------我的申请----------------</p>
+    <button ng-click="myApply()">获取我的申请</button>
+    <div ng-repeat="myApplyContent in myApplyContents">
+        <div ng-if="myApplyContent">
+            <p>申请类型：<span ng-bind="myApplyContent.applyType"></span></p>
+
+            <p>请假时间：<span ng-bind="myApplyContent.applyDays"></span></p>
+
+            <p>请假原因：<span ng-bind="myApplyContent.applyReason"></span></p>
+
+            <p>审批人：<span ng-bind="myApplyContent.applyToDepartment.name"></span>-----<span
+                    ng-bind="myApplyContent.applyToPosition.name"></span>----<span
+                    ng-bind="myApplyContent.applyToUser.userName"></span></p>
+        </div>
+    </div>
+    <hr/>
+    <hr/>
+    <p>------------------我的审批----------------</p>
+    <button ng-click="myApprove()">获取我的审批</button>
+    <div ng-repeat="myApproveContent in myApproveContents">
+        <div ng-if="!myApproveContent.approveProgress.status">
+            <div>申请人：<span ng-bind="myApproveContent.applyUserInfo.userName"></span>
+                <div style="display: inline-block;">
+                    <ul style="color:#f60;">
+                        <li ng-repeat="userJob in myApproveContent.applyUserInfo.job">
+                            <div ng-if="userJob.department==department.did" ng-repeat="department in departments">
+                                <div ng-if="userJob.position==position.pid" ng-repeat="position in positions">
+                                    <span ng-bind="department.name"></span>---------
+                                    <span ng-bind="position.name"></span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <br/>
+                <p>申请人电话号码：<span ng-bind="myApproveContent.applyUserInfo.tel"></span></p>
+            </div>
+            <p>申请类型：<span ng-bind="myApproveContent.applyType"></span></p>
+
+            <p>请假时间：<span ng-bind="myApproveContent.applyDays"></span></p>
+
+            <p>请假原因：<span ng-bind="myApproveContent.applyReason"></span></p>
+            <br/>
+            审批意见：
+            <select name="" ng-model='myApproveDeside'>
+                <option value="">--选择审批意见--</option>
+                <option value="1">同意申请</option>
+                <option value="2">移交上级</option>
+                <option value="3">驳回</option>
+            </select> <br/>
+
+            <div ng-if="myApproveDeside==2">审批人：<select ng-model="department" ng-change="subPosition()"
+                                                        ng-options="department as department.name for department in departments">
+                <option value="" disabled>选择部门</option>
+            </select>
+                <select ng-model="position" ng-change="subApprover()"
+                        ng-options="position as position.name for position in subPositions">
+                    <option value="" disabled>选择职务</option>
+                </select>
+                <select ng-model="subUser" ng-options="user as user.userName for user in subUsers">
+                    <option value="" disabled>选择审批人</option>
+                </select>
+                <br/>
+
+            </div>
+            <button ng-click="myApproveSubmit()">提交</button>
+        </div>
+
+        <hr/>
+        <hr/>
+        <p>以下是已经同意的审批：</p>
+
+        <div ng-if="myApproveContent.approveProgress.status">
+            <p>申请类型：<span ng-bind="myApproveContent.applyType"></span></p>
+
+            <p>请假时间：<span ng-bind="myApproveContent.applyDays"></span></p>
+
+            <p>请假原因：<span ng-bind="myApproveContent.applyReason"></span></p>
+            <br/>
+            审批意见：
+            <select name="" ng-model='myApproveDeside'>
+                <option value="">--选择审批意见--</option>
+                <option value="1">同意申请</option>
+                <option value="2">移交上级</option>
+                <option value="3">驳回</option>
+            </select> <br/>
+
+            <p>审批人：<span ng-bind="myApproveContent.applyToDepartment.name"></span>-----<span
+                    ng-bind="myApproveContent.applyToPosition.name"></span>----<span
+                    ng-bind="myApproveContent.applyToUser.userName"></span></p>
+        </div>
+    </div>
+</div>

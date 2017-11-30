@@ -1,0 +1,23 @@
+<div ng-controller="flowCtrl">
+
+    <hr/>
+
+    <h4>职务权限设定</h4>
+
+    <div>
+        <select name="position" ng-model="position"  ng-options="position as position.name for position in positions">
+            <option value="" disabled>选择职务</option>
+        </select>
+    </div>
+    <hr/>
+
+    <ul>
+        <li ng-repeat="systemPermission in systemPermissions">
+            <input value="{{systemPermission.spid}}" type="checkbox"
+                   ng-click="systemPermissionSelected($event,'{{systemPermission.spid}}')">
+            <span ng-bind="systemPermission.spid"></span>--<span ng-bind="systemPermission.name"></span>-----------------------------<span
+                ng-bind="systemPermission.description"></span>
+        </li>
+    </ul>
+    <button class="btn btn-primary" ng-click="up()">提交</button>
+</div>
